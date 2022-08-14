@@ -1,22 +1,22 @@
 const router = require("express").Router();
 const tokens = require("./login").tokens;
 
-let choosenProducts = [{}]
+let orders = []
 
 //get
 
 router.get('/' , (req , res) =>{
-    res.send(choosenProducts.map((x,i)=>({...x,username:tokens[x.token]})))
+    res.send(orders.map((x,i)=>({...x,username:tokens[x.token]})))
 });
 
 //post
 
 router.post('/', (req, res) => {
 
-    const choosenProduct = req.body;
+    const order = req.body;
 
-    choosenProducts = choosenProduct;
-    res.send({error:false , choosenProduct});
+    orders = order;
+    res.send({error:false , order});
 
   });
 
