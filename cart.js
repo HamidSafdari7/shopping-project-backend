@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const tokens = require("./login").tokens;
 
-let orders = []
+const orders = []
 
 //get
 
@@ -13,9 +13,13 @@ router.get('/' , (req , res) =>{
 
 router.post('/', (req, res) => {
 
-    const order = req.body;
+    const order = {
+        cartItems: req.body.cartItems,
+        id: orders.length + 1,
+        token: req.body.token
+    };
 
-    orders = order;
+    orders.push(order);
     res.send({error:false , order});
 
   });
