@@ -57,4 +57,34 @@ router.get('/' , (req , res) =>{
 
   });
 
+  //put
+
+router.put('/:id', (req,res)=>{
+
+  const user = users.find(c => c.id ===parseInt(req.params.id));
+  if(!user) return res.status(404).send('404');
+
+  const {error} = validation(req.body);
+  if(error) return res.status(400).send(error.details[0].message);
+
+  user.name = req.body.name;
+  user.address = req.body.address;
+  user.phone = req.body.phone;
+  user.password = req.body.password;
+  user.username = req.body.username;
+  res.send(user);
+});
+
+//delete
+router.delete('/:id', (req,res)=>{
+
+  const user = users.find(c => c.id ===parseInt(req.params.id));
+  if(!user) return res.status(404).send('404');
+
+  const index = users.indexOf(user);
+  users.splice(index , 1);
+  res.send({error:false , user});
+});
+
+
   module.exports=router;
