@@ -14,6 +14,7 @@ app.use("/products",require("./products"));
 app.use("/login",require("./login").router);
 app.use("/register",require("./register"));
 app.use("/cart",require("./cart"));
+app.use("/AdminLogin",require("./AdminLogin").router);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () =>console.log(`Listening on port ${port}...`));
